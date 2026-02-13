@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Pour toi, Ornella...</title>
+    <meta name="description" content="Un message spécial rien que pour toi, Ornella 💕">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-heart">
+            <svg viewBox="0 0 100 100" class="heart-svg-loader">
+                <path
+                    d="M50 88 C25 65, 0 45, 0 28 C0 12, 12 0, 28 0 C38 0, 47 6, 50 14 C53 6, 62 0, 72 0 C88 0, 100 12, 100 28 C100 45, 75 65, 50 88Z"
+                    fill="none" stroke="url(#loaderGrad)" stroke-width="2" />
+                <defs>
+                    <linearGradient id="loaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#D4A574" />
+                        <stop offset="100%" stop-color="#F5D5C8" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </div>
+
+    <!-- SCENE 1: THE INVITATION -->
+    <section id="scene-invite" class="scene active">
+        <canvas id="particleCanvas"></canvas>
+        <div class="scene-content invite-content">
+            <div class="invite-card">
+                <div class="invite-border"></div>
+                <div class="invite-inner">
+                    <div class="monogram">♡</div>
+                    <p class="invite-subtitle">Ornella, tu as reçu un message</p>
+                    <div class="seal" id="seal">
+                        <div class="seal-wax">
+                            <span class="seal-heart">❤</span>
+                        </div>
+                        <p class="seal-text">Appuie pour ouvrir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCENE 2: THE REVEAL -->
+    <section id="scene-reveal" class="scene">
+        <canvas id="roseCanvas"></canvas>
+        <div class="scene-content reveal-content">
+
+            <!-- Title with animated entrance -->
+            <div class="reveal-title-wrap">
+                <div class="gold-line left"></div>
+                <h1 class="reveal-title">Joyeuse Saint-Valentin, Ornella</h1>
+                <div class="gold-line right"></div>
+            </div>
+
+            <!-- Rotating love quotes -->
+            <div class="quote-carousel">
+                <div class="quote-frame">
+                    <div class="corner-ornament tl">❧</div>
+                    <div class="corner-ornament tr">❧</div>
+                    <div class="corner-ornament bl">❧</div>
+                    <div class="corner-ornament br">❧</div>
+                    <blockquote class="love-quote" id="loveQuote">
+                        <p class="quote-text" id="quoteText"></p>
+                    </blockquote>
+                </div>
+                <button class="quote-nav" id="nextQuote">
+                    <span class="nav-line"></span>
+                    <span class="nav-text">Suivant</span>
+                    <span class="nav-line"></span>
+                </button>
+            </div>
+
+            <!-- Love letter section -->
+            <div class="letter-section">
+                <div class="letter-paper">
+                    <p class="letter-line" data-delay="0">Ornella,</p>
+                    <p class="letter-line" data-delay="400">Avant toi, je ne savais pas</p>
+                    <p class="letter-line" data-delay="800">qu'on pouvait tenir à quelqu'un aussi fort</p>
+                    <p class="letter-line" data-delay="1200">en si peu de temps.</p>
+                    <br>
+                    <p class="letter-line" data-delay="1800">Cinq mois.</p>
+                    <p class="letter-line" data-delay="2200">Cinq mois à recueillir tes larmes,</p>
+                    <p class="letter-line" data-delay="2600">à ramasser les morceaux que d'autres ont brisés,</p>
+                    <p class="letter-line" data-delay="3000">à te prouver que partir n'est pas une fatalité.</p>
+                    <br>
+                    <p class="letter-line" data-delay="3600">Ils t'ont sous-estimée.</p>
+                    <p class="letter-line" data-delay="4000">Ils n'ont pas vu ce que moi je vois :</p>
+                    <p class="letter-line" data-delay="4400">une femme qui se relève à chaque chute,</p>
+                    <p class="letter-line" data-delay="4800">qui sourit encore malgré les cicatrices.</p>
+                    <br>
+                    <p class="letter-line" data-delay="5400">Et quand c'est moi qui tombais,</p>
+                    <p class="letter-line" data-delay="5800">c'est ta voix, depuis l'autre bout du monde,</p>
+                    <p class="letter-line" data-delay="6200">qui me remettait debout.</p>
+                    <br>
+                    <p class="letter-line" data-delay="6800">Alors retiens bien ça :</p>
+                    <p class="letter-line" data-delay="7200">tu n'es pas seule.</p>
+                    <p class="letter-line" data-delay="7600">Tu ne l'as jamais été.</p>
+                    <p class="letter-line" data-delay="8000">Et tu ne le seras jamais.</p>
+                    <br>
+                    <p class="letter-line signature" data-delay="8600">À toi, pour toujours ✦</p>
+                </div>
+            </div>
+
+            <!-- Bottom flourish -->
+            <div class="flourish">
+                <span>✦</span>
+                <span class="flourish-line"></span>
+                <span class="flourish-heart">♡</span>
+                <span class="flourish-line"></span>
+                <span>✦</span>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

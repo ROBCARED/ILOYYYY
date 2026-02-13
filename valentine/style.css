@@ -1,0 +1,750 @@
+/* ============================================
+   VALENTINE PREMIUM — LUXURY DESIGN SYSTEM
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Luxury palette — black, gold, rose, blush */
+    --black: #0a0a0a;
+    --black-soft: #111111;
+    --charcoal: #1a1a1a;
+    --gold: #C9A96E;
+    --gold-light: #D4B87C;
+    --gold-bright: #E8C87A;
+    --rose: #B76E79;
+    --rose-light: #D4A0A7;
+    --blush: #F5D5C8;
+    --cream: #FAF0E6;
+    --white-soft: rgba(255, 255, 255, 0.85);
+    --white-dim: rgba(255, 255, 255, 0.5);
+    --white-ghost: rgba(255, 255, 255, 0.08);
+
+    /* Typography */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Cormorant Garamond', Garamond, serif;
+    --font-script: 'Great Vibes', cursive;
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 64px;
+    --space-xl: 100px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--cream);
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--rose);
+    color: var(--cream);
+}
+
+/* ============================================
+   PRELOADER
+   ============================================ */
+
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.heart-svg-loader {
+    width: 60px;
+    height: 60px;
+    animation: drawHeart 2s ease-in-out infinite;
+}
+
+.heart-svg-loader path {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: drawPath 2s ease-in-out infinite;
+}
+
+@keyframes drawPath {
+    0% {
+        stroke-dashoffset: 320;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -320;
+    }
+}
+
+@keyframes drawHeart {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   SCENES
+   ============================================ */
+
+.scene {
+    position: relative;
+    min-height: 100vh;
+    display: none;
+    overflow: hidden;
+}
+
+.scene.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scene-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ============================================
+   SCENE 1: INVITATION
+   ============================================ */
+
+#scene-invite {
+    background: var(--black);
+}
+
+.invite-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--space-md);
+}
+
+.invite-card {
+    position: relative;
+    width: 380px;
+    max-width: 90vw;
+    animation: floatIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.5s;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.invite-border {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.invite-border::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--gold);
+    opacity: 0.2;
+}
+
+.invite-inner {
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(201, 169, 110, 0.03) 0%, transparent 100%);
+}
+
+.monogram {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: var(--space-lg);
+    letter-spacing: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease both 1.2s;
+    filter: drop-shadow(0 0 30px rgba(201, 169, 110, 0.3));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.invite-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--white-dim);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fadeIn 1s ease both 1.6s;
+    font-style: italic;
+}
+
+/* Wax Seal */
+.seal {
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 1s ease both 2s;
+}
+
+.seal-wax {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-sm);
+    background: radial-gradient(circle at 35% 35%, #c0392b, #922B21, #7B241C);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 4px 20px rgba(146, 43, 33, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    position: relative;
+}
+
+.seal-wax::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.seal-heart {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.seal:hover .seal-wax {
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow:
+        0 8px 40px rgba(146, 43, 33, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+
+.seal-text {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.seal:hover .seal-text {
+    opacity: 1;
+}
+
+/* ============================================
+   SCENE 2: THE REVEAL
+   ============================================ */
+
+#scene-reveal {
+    background: var(--black);
+}
+
+.reveal-content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+}
+
+/* Title */
+.reveal-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    opacity: 0;
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.3s;
+}
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gold-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+}
+
+.gold-line.left {
+    background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.gold-line.right {
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.reveal-title {
+    font-family: var(--font-script);
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 400;
+    color: var(--gold);
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 0 60px rgba(201, 169, 110, 0.3);
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-bright), var(--gold), var(--gold-light));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Quote Carousel */
+.quote-carousel {
+    margin-bottom: var(--space-xl);
+    opacity: 0;
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.6s;
+}
+
+.quote-frame {
+    position: relative;
+    padding: 50px 40px;
+    border: 1px solid rgba(201, 169, 110, 0.15);
+    background: rgba(201, 169, 110, 0.02);
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.corner-ornament {
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+}
+
+.corner-ornament.tl {
+    top: 12px;
+    left: 16px;
+}
+
+.corner-ornament.tr {
+    top: 12px;
+    right: 16px;
+    transform: scaleX(-1);
+}
+
+.corner-ornament.bl {
+    bottom: 12px;
+    left: 16px;
+    transform: scaleY(-1);
+}
+
+.corner-ornament.br {
+    bottom: 12px;
+    right: 16px;
+    transform: scale(-1);
+}
+
+.love-quote {
+    text-align: center;
+}
+
+.quote-text {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.9;
+    color: var(--blush);
+    min-height: 60px;
+}
+
+.quote-text .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--gold);
+    margin-left: 2px;
+    animation: blink 0.8s step-end infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Quote Nav */
+.quote-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding: 12px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.quote-nav:hover .nav-text {
+    color: var(--gold-light);
+    letter-spacing: 6px;
+}
+
+.quote-nav:hover .nav-line {
+    width: 60px;
+    background: var(--gold);
+}
+
+.nav-text {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    transition: all 0.4s ease;
+}
+
+.nav-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(201, 169, 110, 0.3);
+    transition: all 0.4s ease;
+}
+
+/* Letter Section */
+.letter-section {
+    margin-bottom: var(--space-xl);
+    opacity: 0;
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.9s;
+}
+
+.letter-paper {
+    position: relative;
+    padding: 50px 45px;
+    background: linear-gradient(180deg, rgba(245, 213, 200, 0.04) 0%, rgba(201, 169, 110, 0.02) 100%);
+    border-left: 2px solid rgba(201, 169, 110, 0.2);
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    opacity: 0.5;
+}
+
+.letter-line {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 2;
+    color: var(--rose-light);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.letter-line.signature {
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-top: var(--space-sm);
+}
+
+/* Flourish */
+.flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg) 0;
+    opacity: 0;
+    animation: revealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 1.2s;
+}
+
+.flourish span {
+    color: var(--gold);
+    opacity: 0.4;
+    font-size: 0.9rem;
+}
+
+.flourish-line {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+}
+
+.flourish-heart {
+    font-size: 1.4rem !important;
+    opacity: 0.6 !important;
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+/* ============================================
+   SCENE TRANSITIONS
+   ============================================ */
+
+.scene-exit {
+    animation: sceneOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes sceneOut {
+    to {
+        opacity: 0;
+        transform: scale(1.05);
+        filter: blur(10px);
+    }
+}
+
+.scene-enter {
+    animation: sceneIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes sceneIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   PARTICLE STYLES (rendered via canvas)
+   ============================================ */
+
+/* Ambient glow overlay */
+#scene-invite::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+#scene-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(183, 110, 121, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(201, 169, 110, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .invite-inner {
+        padding: 50px 30px;
+    }
+
+    .quote-frame {
+        padding: 40px 25px;
+    }
+
+    .quote-text {
+        font-size: 1.15rem;
+    }
+
+    .letter-paper {
+        padding: 40px 30px;
+    }
+
+    .letter-line {
+        font-size: 1.1rem;
+    }
+
+    .reveal-content {
+        padding: var(--space-lg) var(--space-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .invite-inner {
+        padding: 40px 20px;
+    }
+
+    .invite-card {
+        width: 100%;
+    }
+
+    .quote-frame {
+        padding: 35px 20px;
+    }
+
+    .quote-text {
+        font-size: 1.05rem;
+    }
+
+    .letter-paper {
+        padding: 30px 20px;
+    }
+
+    .letter-line {
+        font-size: 1rem;
+    }
+
+    .monogram {
+        font-size: 2.5rem;
+        margin-bottom: var(--space-md);
+    }
+}
+
+/* ============================================
+   SMOOTH SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 2px;
+    opacity: 0.5;
+}
