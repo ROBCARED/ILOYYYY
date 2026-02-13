@@ -20,6 +20,7 @@ const quotes = [
 
 let currentQuote = 0;
 let isTyping = false;
+const isMobile = window.innerWidth <= 480 || ('ontouchstart' in window);
 
 // ── PRELOADER ──
 window.addEventListener('load', () => {
@@ -42,7 +43,7 @@ function initParticles(canvasId) {
     window.addEventListener('resize', resize);
 
     const particles = [];
-    const count = canvasId === 'particleCanvas' ? 50 : 60;
+    const count = isMobile ? 25 : (canvasId === 'particleCanvas' ? 50 : 60);
 
     class Particle {
         constructor() {
@@ -103,20 +104,22 @@ function initParticles(canvasId) {
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Connection lines
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 120) {
-                    const op = (1 - dist / 120) * 0.06;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(201, 169, 110, ${op})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
+        // Connection lines (skip on mobile for performance)
+        if (!isMobile) {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        const op = (1 - dist / 120) * 0.06;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(201, 169, 110, ${op})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
                 }
             }
         }
@@ -211,7 +214,7 @@ function initRosePetals() {
         }
     }
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < (isMobile ? 15 : 30); i++) {
         petals.push(new Petal());
     }
 
